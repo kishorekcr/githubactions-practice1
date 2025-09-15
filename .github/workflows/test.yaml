@@ -1,0 +1,18 @@
+name: deployment of code
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: get code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        uses: npm ci
+      - name: lint
+        uses: npm run lint
+      - name: test code
+        uses: npm test
+      - name: Build code
+        uses: npm build
+      - name: Deploy code
+        uses: echo "deploy code"
